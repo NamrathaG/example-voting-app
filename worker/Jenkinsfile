@@ -26,8 +26,7 @@ pipeline {
           }
       }
       stage(package){
-        when { changeset "worker/*" }
-         when { branch 'master' }
+         when { branch 'master'  changeset "worker/*" }
         
           steps{
               echo 'packaging worker app'
