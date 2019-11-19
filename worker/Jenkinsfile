@@ -6,6 +6,7 @@ pipeline {
   }
 
   stages{
+     when { changeset "worker/*" }
       stage(build){
           steps{
               echo 'compiling worker app'
