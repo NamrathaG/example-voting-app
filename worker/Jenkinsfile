@@ -23,12 +23,14 @@ pipeline {
           }
       }
       stage(package){
+         when { branch 'master' }
           steps{
               echo 'packaging worker app'
               dir('worker'){
                 sh 'mvn package -DskipTests'
               }
           }
+       
       }
   }
 
