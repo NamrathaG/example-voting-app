@@ -1,5 +1,4 @@
 pipeline {
-  when { changeset "worker/*" }
   agent any
 
   tools{
@@ -9,7 +8,7 @@ pipeline {
   stages{
 
       stage(build){
-             
+             when { changeset "worker/*" }
           steps{
               echo 'compiling worker app'
               dir('worker'){
@@ -18,6 +17,7 @@ pipeline {
           }
       }
     stage(test){
+      when { changeset "worker/*" }
           steps{
               echo 'testing worker app'
               dir('worker'){
@@ -26,6 +26,7 @@ pipeline {
           }
       }
       stage(package){
+        when { changeset "worker/*" }
          when { branch 'master' }
         
           steps{
